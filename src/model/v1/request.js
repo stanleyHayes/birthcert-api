@@ -71,6 +71,16 @@ const requestSchema = new Schema({
         required: true,
         trim: true
     },
+    father_occupation: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    father_nationality: {
+        type: String,
+        required: true,
+        trim: true
+    },
     telephone_number: {
         type: String,
         required: true,
@@ -124,6 +134,23 @@ const requestSchema = new Schema({
             }
         }
     },
+
+    id_card_type: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    id_card_number: {
+        type: String,
+        required: true,
+        trim: true
+    },
+
+    status: {
+        type: String,
+        enum: ['pending', 'completed'],
+        default: 'pending'
+    }
 }, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});
 
 const Request = mongoose.model('Request', requestSchema);

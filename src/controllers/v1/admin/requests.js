@@ -1,3 +1,5 @@
+const Request = require("./../../../model/v1/request");
+
 exports.createRequest = (req, res) => {
     try {
         res.status(201).json({message: 'Request created', data: {}});
@@ -25,9 +27,18 @@ exports.updateRequest = (req, res) => {
 }
 
 
-exports.getRequests = (req, res) => {
+exports.getRequests = async (req, res) => {
     try {
-        res.status(200).json({message: 'Requests retrieved', data: {}});
+        const match = {};
+        const page = req.query.page;
+        const limit = req.query.size;
+        const skip = (page - 1) * limit;
+        if (req.query.status) {
+            match['status'] = req.query.status;
+        }
+        const requests = await Request.find(match).skip(skip).limit(limit).sort({created_at: -1});
+        const totalRequests = await Request.find(match);
+        res.status(200).json({message: 'Requests retrieved', data: requests, totalRequests});
     } catch (e) {
         res.status(500).json({message: e.message});
     }

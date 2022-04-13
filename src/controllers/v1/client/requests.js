@@ -23,7 +23,11 @@ exports.createRequest = async (req, res) => {
             full_name_of_informant,
             contact_name,
             contact_email,
-            contact_phone
+            contact_phone,
+            father_occupation,
+            father_nationality,
+            id_card_type,
+            id_card_number
         } = req.body;
 
         const {code, data, message, success} = await requests.createRequest(
@@ -47,7 +51,11 @@ exports.createRequest = async (req, res) => {
             full_name_of_informant,
             contact_name,
             contact_email,
-            contact_phone
+            contact_phone,
+            id_card_type,
+            id_card_number,
+            father_occupation,
+            father_nationality,
         );
         res.status(code).json({message, data, success});
     } catch (e) {

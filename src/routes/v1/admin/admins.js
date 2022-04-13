@@ -4,10 +4,8 @@ const {createAdmin, getAdmins, getAdmin, updateAdmin, suspendAdmin} = require(".
 
 const router = express.Router({mergeParams: true});
 
-router.route("/")
-    .post(authenticate, createAdmin)
-    .get(authenticate, getAdmins);
+router.route("/").post(createAdmin).get(getAdmins);
 
-router.route('/:id').get(authenticate, getAdmin).put(authenticate, updateAdmin).delete(authenticate, suspendAdmin);
+router.route('/:id').get(getAdmin).put(updateAdmin).delete(suspendAdmin);
 
 module.exports = router;

@@ -10,10 +10,8 @@ const {
 
 const router = express.Router({mergeParams: true});
 
-router.route("/")
-    .post(authenticate, createRequest)
-    .get(authenticate, getRequests);
+router.route("/").post(createRequest).get(getRequests);
 
-router.route('/:id').get(authenticate, getRequest).put(authenticate, updateRequest).delete(authenticate, deleteRequest);
+router.route('/:id').get(getRequest).put(updateRequest).delete(deleteRequest);
 
 module.exports = router;
