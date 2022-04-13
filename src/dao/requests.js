@@ -13,10 +13,6 @@ const createRequest = async (first_name,
                              mother_nationality,
                              name_of_father,
                              age_of_father,
-                             id_card_type,
-                             id_card_number,
-                             father_occupation,
-                             father_nationality,
                              father_level_of_education,
                              telephone_number,
                              house_number,
@@ -24,7 +20,11 @@ const createRequest = async (first_name,
                              full_name_of_informant,
                              contact_name,
                              contact_email,
-                             contact_phone) => {
+                             contact_phone,
+                             id_card_type,
+                             id_card_number,
+                             father_occupation,
+                             father_nationality,) => {
 
 
     const request = await Request.create({

@@ -134,7 +134,6 @@ const requestSchema = new Schema({
             }
         }
     },
-
     id_card_type: {
         type: String,
         required: true,
