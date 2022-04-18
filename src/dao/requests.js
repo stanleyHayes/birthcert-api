@@ -24,7 +24,23 @@ const createRequest = async (first_name,
                              id_card_type,
                              id_card_number,
                              father_occupation,
-                             father_nationality,) => {
+                             father_nationality,
+                             date_of_baptism,
+                             place_of_baptism,
+                             baptiser,
+                             district,
+                             serial_number,
+                             registration_number,
+                             nhis_number,
+                             sickle_cell_status,
+                             birth_weight,
+                             birth_length,
+                             head_circumference,
+                             birth_registration,
+                             g6pd_status,
+                             gestation_age,
+                             variant
+                             ) => {
 
 
     const request = await Request.create({
@@ -52,7 +68,22 @@ const createRequest = async (first_name,
         full_name_of_informant,
         contact_name,
         contact_email,
-        contact_phone
+        contact_phone,
+        date_of_baptism,
+        place_of_baptism,
+        baptiser,
+        district,
+        serial_number,
+        registration_number,
+        nhis_number,
+        sickle_cell_status,
+        birth_weight,
+        birth_length,
+        head_circumference,
+        birth_registration,
+        g6pd_status,
+        gestation_age,
+        variant
     });
     return {data: request, message: 'Request recorded', code: 201, success: true};
 }

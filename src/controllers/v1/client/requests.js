@@ -27,7 +27,22 @@ exports.createRequest = async (req, res) => {
             father_occupation,
             father_nationality,
             id_card_type,
-            id_card_number
+            id_card_number,
+            date_of_baptism,
+            place_of_baptism,
+            baptiser,
+            district,
+            serial_number,
+            registration_number,
+            nhis_number,
+            sickle_cell_status,
+            birth_weight,
+            birth_length,
+            head_circumference,
+            birth_registration,
+            g6pd_status,
+            gestation_age,
+            variant
         } = req.body;
 
         const {code, data, message, success} = await requests.createRequest(
@@ -56,6 +71,21 @@ exports.createRequest = async (req, res) => {
             id_card_number,
             father_occupation,
             father_nationality,
+            date_of_baptism,
+            place_of_baptism,
+            baptiser,
+            district,
+            serial_number,
+            registration_number,
+            nhis_number,
+            sickle_cell_status,
+            birth_weight,
+            birth_length,
+            head_circumference,
+            birth_registration,
+            g6pd_status,
+            gestation_age,
+            variant
         );
         res.status(code).json({message, data, success});
     } catch (e) {

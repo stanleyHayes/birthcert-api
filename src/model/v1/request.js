@@ -144,7 +144,53 @@ const requestSchema = new Schema({
         required: true,
         trim: true
     },
+    date_of_baptism: {
+        type: String,
+    },
+    place_of_baptism: {
+        type: String,
+    },
+    baptiser: {
+        type: String,
+    },
+    district: {
+        type: String,
+    },
+    serial_number: {
+        type: String,
+    },
+    registration_number: {
+        type: String,
+    },
+    nhis_number: {
+        type: String,
+    },
+    sickle_cell_status: {
+        type: String,
+    },
+    birth_weight: {
+        type: String,
+    },
+    birth_length: {
+        type: String,
+        required: true,
 
+    },
+    head_circumference: {
+        type: String,
+    },
+    birth_registration: {
+        type: String,
+    },
+    g6pd_status: {
+        type: String,
+    },
+    gestation_age: {
+        type: String,
+    },
+    variant: {
+        type: String,
+    },
     status: {
         type: String,
         enum: ['pending', 'completed'],
