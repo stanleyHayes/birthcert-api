@@ -90,6 +90,5 @@ exports.createRequest = async (req, res) => {
         res.status(code).json({message, data, success});
     } catch (e) {
         res.status(500).json({message: e.message});
-        console.log(e.message)
     }
 }

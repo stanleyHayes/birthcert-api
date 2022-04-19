@@ -1,14 +1,11 @@
 const express = require("express");
 const {authenticate} = require("../../../middleware/v1/auth");
 const {
-    getRequest,
-    getRequests,
-} = require("../../../controllers/v1/admin/requests");
+    getDashboard
+} = require("../../../controllers/v1/admin/dashboard");
 
 const router = express.Router({mergeParams: true});
 
-router.route("/").get(getRequests);
-
-router.route('/:id').get(getRequest);
+router.route("/").get(getDashboard);
 
 module.exports = router;

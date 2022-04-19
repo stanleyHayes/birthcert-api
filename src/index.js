@@ -9,6 +9,7 @@ const clientRequestV1Routes = require("./routes/v1/client/requests");
 const clientPaymentV1Routes = require("./routes/v1/client/payments");
 const adminPaymentV1Routes = require("./routes/v1/admin/payments");
 const adminRequestV1Routes = require("./routes/v1/admin/requests");
+const adminDashboardV1Routes = require("./routes/v1/admin/dashboard");
 
 const app = express();
 dotenv.config();
@@ -30,6 +31,7 @@ app.use('/api/v1/user/requests', clientRequestV1Routes);
 app.use('/api/v1/user/payments', clientPaymentV1Routes);
 app.use('/api/v1/admin/payments', adminPaymentV1Routes);
 app.use('/api/v1/admin/requests', adminRequestV1Routes);
+app.use('/api/v1/admin/dashboard', adminDashboardV1Routes);
 
 app.listen(process.env.PORT || 8004, () => {
     console.log(`Server connected in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`);

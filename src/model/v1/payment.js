@@ -31,7 +31,7 @@ const paymentSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['pending', 'confirmed'],
+        enum: ['pending', 'confirmed', 'waived'],
         default: 'pending'
     }
 }, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});

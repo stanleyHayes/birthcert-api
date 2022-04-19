@@ -1,26 +1,10 @@
 const Request = require("./../../../model/v1/request");
 
-exports.createRequest = (req, res) => {
+exports.getRequest = async (req, res) => {
     try {
-        res.status(201).json({message: 'Request created', data: {}});
-    } catch (e) {
-        res.status(500).json({message: e.message});
-    }
-}
-
-
-exports.getRequest = (req, res) => {
-    try {
-        res.status(200).json({message: 'Request retrieved', data: {}});
-    } catch (e) {
-        res.status(500).json({message: e.message});
-    }
-}
-
-
-exports.updateRequest = (req, res) => {
-    try {
-        res.status(200).json({message: 'Request updated', data: {}});
+        const request = await Request.findById(req.params.id);
+        if(!request) return res.status(404).json({message: 'Request not found'});
+        res.status(200).json({message: 'Request retrieved', data: request});
     } catch (e) {
         res.status(500).json({message: e.message});
     }
@@ -39,15 +23,6 @@ exports.getRequests = async (req, res) => {
         const requests = await Request.find(match).skip(skip).limit(limit).sort({created_at: -1});
         const totalRequests = await Request.find(match);
         res.status(200).json({message: 'Requests retrieved', data: requests, totalRequests});
-    } catch (e) {
-        res.status(500).json({message: e.message});
-    }
-}
-
-
-exports.deleteRequest = (req, res) => {
-    try {
-        res.status(200).json({message: 'Admin deleted', data: {}});
     } catch (e) {
         res.status(500).json({message: e.message});
     }
