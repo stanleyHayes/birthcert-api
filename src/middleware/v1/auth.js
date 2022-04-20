@@ -7,7 +7,6 @@ const authenticate = async (req, res, next) => {
         if(!req.headers || !req.headers['authorization'])
             return res.status(400).json({message: 'Invalid header format'});
         const [bearer, token] = req.headers['authorization'].split(' ');
-        console.log(req.headers['authorization'], 'authorization')
         if(!bearer || !token)
             return res.status(400).json({message: 'Invalid header format: Token required'});
         const data = jwt.verify(token, process.env.JWT_SECRET, null, null);
