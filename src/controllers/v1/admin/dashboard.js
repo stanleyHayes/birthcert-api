@@ -26,6 +26,7 @@ exports.getDashboard = async (req, res) => {
             }
         });
     } catch (e) {
+        console.log(e.message, 'error')
         res.status(500).json({message: e.message});
     }
 }

@@ -8,6 +8,11 @@ const adminSchema = new Schema({
         required: true,
         trim: true
     },
+    username: {
+        type: String,
+        required: true,
+        trim: true
+    },
     email: {
         type: String,
         required: true,
@@ -30,9 +35,6 @@ const adminSchema = new Schema({
             }
         }
     },
-    image: {
-        type: String
-    },
     password: {
         type: String,
         required: true,
@@ -46,9 +48,9 @@ const adminSchema = new Schema({
     authInfo: {
         otp: {
             type: String,
-            minlength: 6
+            minlength: 4
         },
-        validUntil: {
+        otpValidUntil: {
             type: Date
         },
         token: {
@@ -60,204 +62,47 @@ const adminSchema = new Schema({
         enum: ['active', 'suspended', 'pending'],
         status: 'pending'
     },
-    permissions: {
-        faqs: {
-            read: {
-                type: Boolean,
-                default: false
+    devices: {
+        type: [{
+            token: {
+                type: String,
+                required: true,
+                validate(value){
+                    if(!validator.isJWT(value)){
+                        throw new Error(`${value} is not a valid token`)
+                    }
+                }
             },
-            create: {
-                type: Boolean,
-                default: false
+            ip: {
+                type: String,
+                validate(value){
+                    if(!validator.isIP(value)){
+                        throw new Error(`${value} is not a valid IP address`)
+                    }
+                }
             },
-            update: {
-                type: Boolean,
-                default: false
+            browser: {
+                type: String,
+                required: true,
             },
-            remove: {
+            platform: {
+                type: String,
+                required: true,
+            },
+            isMobile: {
                 type: Boolean,
-                default: false
+                required: true,
+            },
+            isDesktop: {
+                type: Boolean,
+                required: true,
+            },
+            os: {
+                type: String,
+                required: true,
             }
-        },
-        invitations: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            }
-        },
-        clients: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            }
-        },
-        admins: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            }
-        },
-        messages: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            },
-            reply: {
-                type: Boolean,
-                default: false
-            }
-        },
-        quotes: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            },
-            reply: {
-                type: Boolean,
-                default: true
-            }
-        },
-        sales: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            }
-        },
-        services: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            }
-        },
-        teams: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            }
-        },
-        testimonials: {
-            read: {
-                type: Boolean,
-                default: false
-            },
-            create: {
-                type: Boolean,
-                default: false
-            },
-            update: {
-                type: Boolean,
-                default: false
-            },
-            remove: {
-                type: Boolean,
-                default: false
-            },
-            approve: {
-                type: Boolean,
-                default: false
-            },
-            refuse: {
-                type: Boolean,
-                default: false
-            }
-        }
-    }
+        }]
+    },
 }, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});
 
 const Admin = mongoose.model('Admin', adminSchema);

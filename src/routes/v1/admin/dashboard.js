@@ -6,6 +6,6 @@ const {
 
 const router = express.Router({mergeParams: true});
 
-router.route("/").get(getDashboard);
+router.route("/").get(authenticate, getDashboard);
 
 module.exports = router;

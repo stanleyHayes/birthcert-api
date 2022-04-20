@@ -4,8 +4,8 @@ const {getPayments, updatePayment, getPayment} = require("../../../controllers/v
 
 const router = express.Router({mergeParams: true});
 
-router.route("/").get(getPayments);
+router.route("/").get(authenticate, getPayments);
 
-router.route('/:id').get(getPayment).put(updatePayment);
+router.route('/:id').get(authenticate, getPayment).put(authenticate, updatePayment);
 
 module.exports = router;
