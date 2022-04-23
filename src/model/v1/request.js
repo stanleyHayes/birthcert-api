@@ -39,7 +39,7 @@ const requestSchema = new Schema({
         trim: true
     },
     age_of_mother: {
-        type: Number,
+        type: String,
         required: true,
     },
     mother_level_of_education: {
@@ -63,7 +63,7 @@ const requestSchema = new Schema({
         trim: true
     },
     age_of_father: {
-        type: Number,
+        type: String,
         required: true
     },
     father_level_of_education: {
