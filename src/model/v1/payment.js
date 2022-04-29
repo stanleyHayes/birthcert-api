@@ -4,35 +4,31 @@ const Schema = mongoose.Schema;
 const paymentSchema = new Schema({
     name: {
         type: String,
-        required: true,
         trim: true
     },
     amount: {
         type: Number,
-        required: true,
         min: 0
     },
     phone: {
         type: String,
-        required: true,
         trim: true,
     },
     provider: {
         type: String,
         required: true,
         trim: true,
-        enum: ['AirtelTigo', 'Vodafone Cash', 'Momo', 'Free']
+        enum: ['AirtelTigo', 'Vodafone Cash', 'Momo', 'Waived']
     },
     transaction_id: {
         type: String,
-        required: true,
         trim: true,
         lowercase: true,
     },
     status: {
         type: String,
-        enum: ['pending', 'confirmed', 'waived'],
-        default: 'pending'
+        enum: ['Pending', 'Confirmed', 'Waived'],
+        default: 'Pending'
     }
 }, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});
 
