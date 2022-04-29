@@ -114,7 +114,6 @@ const requestSchema = new Schema({
     },
     contact_email: {
         type: String,
-        required: true,
         trim: true,
         lowercase: true,
         validate(value) {
