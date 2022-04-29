@@ -27,3 +27,22 @@ exports.getRequests = async (req, res) => {
         res.status(500).json({message: e.message});
     }
 }
+
+exports.updateRequest = async (req, res) => {
+    try {
+        const request = await Request.findById(req.params.id);
+        if(!request) return res.status(404).json({message: 'Request not found'});
+        const updates = Object.keys(req.body);
+        const allowedUpdates = ['status'];
+        const isAllowed = updates.every(update => allowedUpdates.includes(update));
+        if(!isAllowed) return res.status(400).json({message: 'Updates not allowed'});
+        for(let key of updates){
+            request[key] = req.body[key];
+        }
+        await request.save();
+        res.status(200).json({message: 'Request retrieved', data: request});
+    } catch (e) {
+        res.status(500).json({message: e.message});
+    }
+}
+
