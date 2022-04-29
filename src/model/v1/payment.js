@@ -18,7 +18,7 @@ const paymentSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        enum: ['AirtelTigo', 'Vodafone Cash', 'Momo', 'Waived']
+        enum: ['AirtelTigo', 'Vodafone Cash', 'Momo', 'Waived', 'Free']
     },
     transaction_id: {
         type: String,
